@@ -34,3 +34,24 @@ class Product(models.Model):
         return self.pricef
     def __str__(self):
         return self.title
+
+
+
+class Comment(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    comment = models.TextField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name} {str(self.product)}'
+
+
+
+class Order(models.Model):
+    your_name = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.your_name} {str(self.product)}'
